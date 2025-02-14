@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+        
+        body {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            animation: backgroundFade 5s infinite alternate;
+            transition: background 1s ease-in-out;
+        }
+        .container {
+            background: rgb(241, 225, 225);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            width: 320px;
+            animation: fadeIn 1.5s ease-in-out;
+            transition: transform 0.5s ease-in-out;
+        }
+        button {
+            background: #ff4f7b;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+            transition: transform 0.3s ease-in-out, background 0.3s;
+            animation: bounce 1s infinite alternate;
+        }
+        button:hover {
+            background: #ff1e5a;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+        @keyframes backgroundFade {
+            0% { background: linear-gradient(45deg, #ff758c, #ff7eb3); }
+            50% { background: linear-gradient(45deg, #ff3b6b, #ff98b7); }
+            100% { background: linear-gradient(45deg, #ff758c, #ff7eb3); }
+        }
+        .song-container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            width: 380px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .meme {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+            animation: popIn 0.5s ease-in-out;
+        }
+        @keyframes popIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="box">
+        <p>Hey, how are you? I'm planning something for 15th feb. if you dont mind can you answer some question.</p>
+        <p>Are you ready for a quick survey?</p>
+        <button onclick="nextPage('startSurvey')">Yes</button>
+        <button onclick="alert('Pls tap yes 😜')">No</button>
+    </div>
+
+    <script>
+        let selections = [];
+
+        function nextPage(step) {
+            if (step === 'startSurvey') {
+                document.getElementById("box").innerHTML = `
+                    <p>Welcome Sehar-ul-Nisa! 💕</p>
+                    <p>Can you tap on Continue?</p>
+                    <button onclick="nextPage('planDate')">Continue</button>
+                `;
+            } else if (step === 'planDate') {
+                document.getElementById("box").innerHTML = `
+                    <p>I'm planning a date, so please help me out!!</p>
+                    <button onclick="nextPage('chooseFood')">Okay</button>
+                    <button onclick="nextPage('chooseFood')">yes plss!!!</button>
+                `;
+            } else if (step === 'chooseFood') {
+                document.getElementById("box").innerHTML = `
+                    <p>What do you want to eat?</p>
+                    <p>Ik you don't know! Ikr? So let me help you!!</p>
+                    <button onclick="nextPage('mood')">Continue</button>
+                    <button onclick="nextPage('planDate')">Go Back</button>
+                `;
+            } else if (step === 'mood') {
+                document.getElementById("box").innerHTML = `
+                    <p>What's your mood?</p>
+                    <button onclick="selectOption('Cooking', 'spicySweet')">Cooking</button>
+                    <button onclick="selectOption('Order', 'spicySweet')">Order</button>
+                    <button onclick="selectOption('Going Out', 'spicySweet')">Going Out</button>
+                    <button onclick="nextPage('chooseFood')">Go Back</button>
+                `;
+            } else if (step === 'spicySweet') {
+                document.getElementById("box").innerHTML = `
+                    <p>Spicy or Sweet?</p>
+                    <button onclick="selectOption('Spicy', 'selectSpicyFood')">Spicy 🍜</button>
+                    <button onclick="selectOption('Sweet', 'selectSweetFood')">Sweet 🍰</button>
+                    <button onclick="nextPage('mood')">Go Back</button>
+                `;
+            } else if (step === 'selectSpicyFood') {
+                document.getElementById("box").innerHTML = `
+                    <p>Choose your spicy food:</p>
+                    <button onclick="selectOption('Pasta', 'finalChoice')">Pasta 🍝</button>
+                    <button onclick="selectOption('Maggie', 'finalChoice')">Maggie 🍜</button>
+                    <button onclick="selectOption('Ramen', 'finalChoice')">Ramen 🍜</button>
+                    <button onclick="selectOption('Noodles', 'finalChoice')"> laughing 🍜</button>
+                    <button onclick="selectOption('Momos', 'finalChoice')">Momos 🥟</button>
+                    <button onclick="selectOption('Burger', 'finalChoice')">Burger 🍔</button>
+                    <button onclick="selectOption('Pizza', 'finalChoice')">Pizza 🍕</button>
+                    <button onclick="selectOption('Fries', 'finalChoice')">Fries 🍟</button>
+                    <button onclick="selectOption('Rolls', 'finalChoice')">Rolls 🌯</button>
+                    <button onclick="nextPage('spicySweet')">Go Back</button>
+                `;
+            } else if (step === 'selectSweetFood') {
+                document.getElementById("box").innerHTML = `
+                    <p>Choose your sweet food:</p>
+                    <button onclick="selectOption('Carrot Cake', 'finalChoice')">Carrot Cake 🥕🍰</button>
+                    <button onclick="selectOption('Gulab Jamun', 'finalChoice')">Gulab Jamun 🍡</button>
+                    <button onclick="selectOption('Jalebi', 'finalChoice')">Jalebi 🌀</button>
+                    <button onclick="selectOption('Hot Chocolate', 'finalChoice')">Chocolate 🍫</button>
+                    <button onclick="nextPage('spicySweet')">Go Back</button>
+                `;
+            } else if (step === 'finalChoice') {
+                showFinalChoice();
+            } else if (step === 'finalPage') {
+                document.body.innerHTML = `
+                    <div class="song-container">
+                        <h2>For You, My Love ❤️</h2>
+                        <p>You make my world brighter every single day. Thank you for being you. 💕</p>
+                        <p>"Orbit - Dxngelo"</p>
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1kovKnyZig5ppxLX9G44Sl?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                `;
+            }
+        }
+
+        function selectOption(choice, nextStep) {
+            selections.push(choice);
+            if (nextStep === 'finalChoice') {
+                showFinalChoice();
+            } else {
+                nextPage(nextStep);
+            }
+        }
+
+        function showFinalChoice() {
+            let foodChoice = selections[selections.length - 1]; // Get the last selected food item
+            document.getElementById("box").innerHTML = `
+                <p> Date is all planned!. see you on 15th feb. 🎉</p>
+                <p>Thank you for selecting: ${foodChoice}</p>
+                <img src="https://media.giphy.com/media/3o7aD2d7hy9ktXNDP2/giphy.gif" alt="Celebration Meme" class="meme">
+                <button onclick="nextPage('finalPage')">Finish</button>
+            `;
+        }
+    </script>
+</body>
+</html>
