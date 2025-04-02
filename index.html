@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine?</title>
+    <title> lets go out </title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
         
@@ -80,7 +80,7 @@
 </head>
 <body>
     <div class="container" id="box">
-        <p>Hey, how are you? I'm planning something for 15th feb. if you dont mind can you answer some question.</p>
+        <p>Hey, how are you? lets plan something . if you dont mind can you answer some question.</p>
         <p>Are you ready for a quick survey?</p>
         <button onclick="nextPage('startSurvey')">Yes</button>
         <button onclick="alert('Pls tap yes 😜')">No</button>
@@ -92,7 +92,7 @@
         function nextPage(step) {
             if (step === 'startSurvey') {
                 document.getElementById("box").innerHTML = `
-                    <p>Welcome Sehar-ul-Nisa! 💕</p>
+                    <p>Welcome USER! 💕</p>
                     <p>Can you tap on Continue?</p>
                     <button onclick="nextPage('planDate')">Continue</button>
                 `;
